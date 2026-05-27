@@ -1,0 +1,265 @@
+# 4A金库审批日志表稽核配置（任务化配置）
+# 表名: bg_4a_gold_log
+
+# 稽核任务名称（第一级配置）
+task_name: "4A金库审批日志表稽核"
+
+# 表信息配置
+table_info:
+  name: "gold_log"
+  display_name: "4A金库审批日志表"
+  description: "4A系统金库审批日志数据质量稽核"
+  
+  # 表名配置
+  standard_table: "argus.bg_4a_gold_log_standard"
+  error_table: "argus.bg_4a_gold_log_error"
+  
+  # 字段配置
+  time_field: "generic_into_time"
+  primary_key: "gold_grant_result"
+  
+  # SQL模板目录
+  template_dir: "gold_log"
+  
+  # 特殊过滤条件（用于过滤测试数据）
+  filter_condition: "standby1 IS NULL"
+
+# 任务列表（任务化配置）
+tasks:
+  # 任务1：金库授权结果-唯一性检查
+  - task_id: "gold_grant_result_uniqueness"
+    task_name: "金库授权结果唯一性检查"
+    enabled: true
+    sql_template: "gold_log_uniqueness_check"
+    params:
+      field: "gold_grant_result"
+      display_name: "金库授权结果"
+  
+  # 任务2：金库授权结果-非空检查
+  - task_id: "gold_grant_result_null"
+    task_name: "金库授权结果非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "gold_grant_result"
+      display_name: "金库授权结果"
+  
+  # 任务3：资源池-非空检查
+  - task_id: "resource_pool_null"
+    task_name: "资源池非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "resource_pool"
+      display_name: "资源池"
+  
+  # 任务4：账号ID-非空检查
+  - task_id: "account_id_null"
+    task_name: "账号ID非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "account_id"
+      display_name: "账号ID"
+  
+  # 任务5：自然人姓名-非空检查
+  - task_id: "natural_name_null"
+    task_name: "自然人姓名非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "natural_name"
+      display_name: "自然人姓名"
+  
+  # 任务6：账号角色-枚举值检查
+  - task_id: "account_role_enum"
+    task_name: "账号角色枚举值检查"
+    enabled: true
+    sql_template: "gold_log_enum_check"
+    params:
+      field: "account_role"
+      display_name: "账号角色"
+  
+  # 任务7：账号角色-非空检查
+  - task_id: "account_role_null"
+    task_name: "账号角色非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "account_role"
+      display_name: "账号角色"
+  
+  # 任务8：来源账号-非空检查
+  - task_id: "from_account_null"
+    task_name: "来源账号非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "from_account"
+      display_name: "来源账号"
+  
+  # 任务9：申请原因-非空检查
+  - task_id: "req_reason_null"
+    task_name: "申请原因非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "req_reason"
+      display_name: "申请原因"
+  
+  # 任务10：金库授权类型-枚举值检查
+  - task_id: "gold_grant_type_enum"
+    task_name: "金库授权类型枚举值检查"
+    enabled: true
+    sql_template: "gold_log_enum_check"
+    params:
+      field: "gold_grant_type"
+      display_name: "金库授权类型"
+  
+  # 任务11：开始时间-条件非空检查
+  - task_id: "start_time_conditional_null"
+    task_name: "开始时间条件非空检查"
+    enabled: true
+    sql_template: "gold_log_time_conditional_null_check"
+    params:
+      field: "start_time"
+      display_name: "开始时间"
+      condition: "gold_grant_type = '按时间段'"
+  
+  # 任务12：结束时间-条件非空检查
+  - task_id: "end_time_conditional_null"
+    task_name: "结束时间条件非空检查"
+    enabled: true
+    sql_template: "gold_log_time_conditional_null_check"
+    params:
+      field: "end_time"
+      display_name: "结束时间"
+      condition: "gold_grant_type = '按时间段'"
+  
+  # 任务13：预约时间-非空检查
+  - task_id: "reservation_time_null"
+    task_name: "预约时间非空检查"
+    enabled: true
+    sql_template: "gold_log_time_null_check"
+    params:
+      field: "reservation_time"
+      display_name: "预约时间"
+  
+  # 任务14：审批人ID-条件非空检查
+  - task_id: "approved_user_id_conditional_null"
+    task_name: "审批人ID条件非空检查"
+    enabled: true
+    sql_template: "gold_log_conditional_null_check"
+    params:
+      field: "approved_user_id"
+      display_name: "审批人ID"
+      condition: "gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('审批不通过', '未触发金库')"
+  
+  # 任务15：审批人姓名-条件非空检查
+  - task_id: "approved_user_name_conditional_null"
+    task_name: "审批人姓名条件非空检查"
+    enabled: true
+    sql_template: "gold_log_conditional_null_check"
+    params:
+      field: "approved_user_name"
+      display_name: "审批人姓名"
+      condition: "gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('未触发金库')"
+  
+  # 任务16：审批时间-非空检查
+  - task_id: "approved_time_null"
+    task_name: "审批时间非空检查"
+    enabled: true
+    sql_template: "gold_log_time_null_check"
+    params:
+      field: "approved_time"
+      display_name: "审批时间"
+  
+  # 任务17：金库执行结果-枚举值检查
+  - task_id: "gold_exec_result_enum"
+    task_name: "金库执行结果枚举值检查"
+    enabled: true
+    sql_template: "gold_log_enum_check"
+    params:
+      field: "gold_exec_result"
+      display_name: "金库执行结果"
+  
+  # 任务18：金库执行结果-非空检查
+  - task_id: "gold_exec_result_null"
+    task_name: "金库执行结果非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "gold_exec_result"
+      display_name: "金库执行结果"
+  
+  # 任务19：认证模式-枚举值检查
+  - task_id: "auth_mode_enum"
+    task_name: "认证模式枚举值检查"
+    enabled: true
+    sql_template: "gold_log_enum_check"
+    params:
+      field: "auth_mode"
+      display_name: "认证模式"
+  
+  # 任务20：认证模式-非空检查
+  - task_id: "auth_mode_null"
+    task_name: "认证模式非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "auth_mode"
+      display_name: "认证模式"
+  
+  # 任务21：状态-枚举值检查
+  - task_id: "status_enum"
+    task_name: "状态枚举值检查"
+    enabled: true
+    sql_template: "gold_log_enum_check"
+    params:
+      field: "status"
+      display_name: "状态"
+  
+  # 任务22：金库场景名称-条件非空检查
+  - task_id: "gold_scene_name_conditional_null"
+    task_name: "金库场景名称条件非空检查"
+    enabled: true
+    sql_template: "gold_log_conditional_null_check"
+    params:
+      field: "gold_scene_name"
+      display_name: "金库场景名称"
+      condition: "gold_exec_result != '未触发金库'"
+  
+  # 任务23：触发类型-非空检查
+  - task_id: "trigger_type_null"
+    task_name: "触发类型非空检查"
+    enabled: true
+    sql_template: "gold_log_null_check"
+    params:
+      field: "trigger_type"
+      display_name: "触发类型"
+  
+  # 任务24：触发类型-枚举值检查
+  - task_id: "trigger_type_enum"
+    task_name: "触发类型枚举值检查"
+    enabled: true
+    sql_template: "gold_log_enum_check"
+    params:
+      field: "trigger_type"
+      display_name: "触发类型"
+  
+  # 任务25：金库场景信息-语义检查
+  - task_id: "gold_scene_info_semantic"
+    task_name: "金库场景信息语义检查"
+    enabled: true
+    sql_template: "gold_log_semantic_check"
+    params:
+      field: "gold_scene_info"
+      display_name: "金库场景信息"
+  
+  # 任务26：表数据量统计
+  - task_id: "table_count_statistics"
+    task_name: "表数据量统计"
+    enabled: true
+    sql_template: "gold_log_table_count"
+    params:
+      description: "统计金库审批日志表的数据量"

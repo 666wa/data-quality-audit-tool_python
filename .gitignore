@@ -1,0 +1,33 @@
+# 敏感配置文件（包含数据库密码等）
+config/config.yaml
+
+# 运行时日志
+logs/
+
+# 输出报告
+output/
+
+# 离线安装包（whl文件较大，不适合放GitHub）
+offline_packages/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE/编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 打包文件
+*.zip
+*.tar.gz

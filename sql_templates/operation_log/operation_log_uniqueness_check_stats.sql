@@ -1,0 +1,50 @@
+-- 唯一性核查 - 统计版本（按设备类型分组，优化性能）
+-- 统计每个设备类型的重复记录数量和比例
+WITH 
+-- 1. 定义时间范围
+time_range AS (
+    SELECT 
+        toDateTime64('{start_time}', 3) AS start_ts,
+        toDateTime64('{end_time}', 3) AS end_ts
+),
+-- 2. 联合查询两张表（只查必要字段）
+all_logs AS ( 
+    SELECT {field}, dst_device_type
+    FROM {table_standard}
+    WHERE {time_field} >= (SELECT start_ts FROM time_range) 
+      AND {time_field} < (SELECT end_ts FROM time_range) 
+    
+    UNION ALL 
+    
+    SELECT {field}, dst_device_type
+    FROM {table_error}
+    WHERE {time_field} >= (SELECT start_ts FROM time_range) 
+      AND {time_field} < (SELECT end_ts FROM time_range) 
+),
+-- 3. 按设备类型和字段值分组，找出重复的
+field_counts AS (
+    SELECT 
+        {field},
+        dst_device_type,
+        COUNT(*) AS repeat_count
+    FROM all_logs
+    GROUP BY {field}, dst_device_type
+),
+-- 4. 按设备类型统计
+device_stats AS (
+    SELECT 
+        dst_device_type,
+        SUM(repeat_count) AS total_count,
+        SUM(CASE WHEN repeat_count > 1 THEN repeat_count ELSE 0 END) AS duplicate_count
+    FROM field_counts
+    GROUP BY dst_device_type
+)
+-- 5. 输出按设备类型分组的统计结果
+SELECT 
+    dst_device_type,
+    total_count AS total_records,
+    duplicate_count AS duplicate_records,
+    round(duplicate_count * 100.0 / total_count, 4) AS duplicate_percentage
+FROM device_stats
+WHERE total_count > 0
+ORDER BY duplicate_percentage DESC, total_count DESC;

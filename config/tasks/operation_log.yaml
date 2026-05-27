@@ -1,0 +1,416 @@
+# 4A操作日志表稽核配置（任务化配置）
+# 表名: bg_4a_operation_log
+
+# 稽核任务名称（第一级配置）
+task_name: "4A操作日志表稽核"
+
+# 表信息配置
+table_info:
+  name: "operation_log"
+  display_name: "4A操作日志表"
+  description: "4A系统操作日志数据质量稽核"
+  
+  # 表名配置
+  standard_table: "argus.bg_4a_operation_log_standard"
+  error_table: "argus.bg_4a_operation_log_error"
+  
+  # 字段配置
+  time_field: "generic_into_time"
+  primary_key: "log_id"
+  
+  # SQL模板目录
+  template_dir: "operation_log"
+
+# 任务列表（任务化配置）
+tasks:
+  # 任务1：日志ID-唯一性检查
+  - task_id: "log_id_uniqueness"
+    task_name: "日志ID唯一性检查"
+    enabled: true
+    sql_template: "operation_log_uniqueness_check"
+    params:
+      field: "log_id"
+      display_name: "日志ID"
+  
+  # 任务2：日志ID-非空检查
+  - task_id: "log_id_null"
+    task_name: "日志ID非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "log_id"
+      display_name: "日志ID"
+  
+  # 任务3：会话ID-非空检查
+  - task_id: "session_id_null"
+    task_name: "会话ID非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "session_id"
+      display_name: "会话ID"
+  
+  # 任务4：日志来源-枚举值检查
+  - task_id: "log_source_enum"
+    task_name: "日志来源枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "log_source"
+      display_name: "日志来源"
+  
+  # 任务5：日志来源-非空检查
+  - task_id: "log_source_null"
+    task_name: "日志来源非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "log_source"
+      display_name: "日志来源"
+  
+  # 任务6：操作来源-枚举值检查
+  - task_id: "operate_source_enum"
+    task_name: "操作来源枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "operate_source"
+      display_name: "操作来源"
+  
+  # 任务7：操作来源-非空检查
+  - task_id: "operate_source_null"
+    task_name: "操作来源非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "operate_source"
+      display_name: "操作来源"
+  
+  # 任务8：自然人组织路径-非空检查
+  - task_id: "natural_org_path_null"
+    task_name: "自然人组织路径非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "natural_org_path"
+      display_name: "自然人组织路径"
+  
+  # 任务9：自然人姓名-非空检查
+  - task_id: "natural_name_null"
+    task_name: "自然人姓名非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "natural_name"
+      display_name: "自然人姓名"
+  
+  # 任务10：自然人状态-非空检查
+  - task_id: "natural_status_null"
+    task_name: "自然人状态非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "natural_status"
+      display_name: "自然人状态"
+  
+  # 任务11：自然人状态-枚举值检查
+  - task_id: "natural_status_enum"
+    task_name: "自然人状态枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "natural_status"
+      display_name: "自然人状态"
+  
+  # 任务12：账号ID-非空检查
+  - task_id: "account_id_null"
+    task_name: "账号ID非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "account_id"
+      display_name: "账号ID"
+  
+  # 任务13：账号名称-非空检查
+  - task_id: "account_name_null"
+    task_name: "账号名称非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "account_name"
+      display_name: "账号名称"
+  
+  # 任务14：账号状态-枚举值检查
+  - task_id: "account_status_enum"
+    task_name: "账号状态枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "account_status"
+      display_name: "账号状态"
+  
+  # 任务15：账号状态-非空检查
+  - task_id: "account_status_null"
+    task_name: "账号状态非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "account_status"
+      display_name: "账号状态"
+  
+  # 任务16：账号角色-枚举值检查
+  - task_id: "account_role_enum"
+    task_name: "账号角色枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "account_role"
+      display_name: "账号角色"
+  
+  # 任务17：账号角色-非空检查
+  - task_id: "account_role_null"
+    task_name: "账号角色非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "account_role"
+      display_name: "账号角色"
+  
+  # 任务18：责任人-条件非空检查
+  - task_id: "person_liable_conditional_null"
+    task_name: "责任人条件非空检查"
+    enabled: true
+    sql_template: "operation_log_conditional_null_check"
+    params:
+      field: "person_liable"
+      display_name: "责任人"
+      condition: "dst_device_type != 'unknown'"
+  
+  # 任务19：来源账号-条件非空检查
+  - task_id: "from_account_conditional_null"
+    task_name: "来源账号条件非空检查"
+    enabled: true
+    sql_template: "operation_log_conditional_null_check"
+    params:
+      field: "from_account"
+      display_name: "来源账号"
+      condition: "operate_source = 'remote'"
+  
+  # 任务20：来源账号状态-枚举值检查
+  - task_id: "from_account_status_enum"
+    task_name: "来源账号状态枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "from_account_status"
+      display_name: "来源账号状态"
+  
+  # 任务21：来源账号状态-条件非空检查
+  - task_id: "from_account_status_conditional_null"
+    task_name: "来源账号状态条件非空检查"
+    enabled: true
+    sql_template: "operation_log_conditional_null_check"
+    params:
+      field: "from_account_status"
+      display_name: "来源账号状态"
+      condition: "from_account IS NOT NULL"
+  
+  # 任务22：来源账号类型-枚举值检查
+  - task_id: "from_account_type_enum"
+    task_name: "来源账号类型枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "from_account_type"
+      display_name: "来源账号类型"
+  
+  # 任务23：来源账号类型-条件非空检查
+  - task_id: "from_account_type_conditional_null"
+    task_name: "来源账号类型条件非空检查"
+    enabled: true
+    sql_template: "operation_log_conditional_null_check"
+    params:
+      field: "from_account_type"
+      display_name: "来源账号类型"
+      condition: "from_account IS NOT NULL"
+  
+  # 任务24：客户端IP-非空检查
+  - task_id: "custom_ip_null"
+    task_name: "客户端IP非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "custom_ip"
+      display_name: "客户端IP"
+  
+  # 任务25：客户端-语义检查
+  - task_id: "client_semantic"
+    task_name: "客户端语义检查"
+    enabled: true
+    sql_template: "operation_log_semantic_check"
+    params:
+      field: "client"
+      display_name: "客户端"
+  
+  # 任务26：操作时间-时间非空检查
+  - task_id: "operate_time_time_null"
+    task_name: "操作时间非空检查"
+    enabled: true
+    sql_template: "operation_log_time_null_check"
+    params:
+      field: "operate_time"
+      display_name: "操作时间"
+  
+  # 任务27：采集时间-时间非空检查
+  - task_id: "collect_time_time_null"
+    task_name: "采集时间非空检查"
+    enabled: true
+    sql_template: "operation_log_time_null_check"
+    params:
+      field: "collect_time"
+      display_name: "采集时间"
+  
+  # 任务28：服务器IP-非空检查
+  - task_id: "server_ip_null"
+    task_name: "服务器IP非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "server_ip"
+      display_name: "服务器IP"
+  
+  # 任务29：目标设备类型-枚举值检查
+  - task_id: "dst_device_type_enum"
+    task_name: "目标设备类型枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "dst_device_type"
+      display_name: "目标设备类型"
+  
+  # 任务30：目标设备类型-非空检查
+  - task_id: "dst_device_type_null"
+    task_name: "目标设备类型非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "dst_device_type"
+      display_name: "目标设备类型"
+  
+  # 任务31：协议-条件非空检查
+  - task_id: "protocol_conditional_null"
+    task_name: "协议条件非空检查"
+    enabled: true
+    sql_template: "operation_log_conditional_null_check"
+    params:
+      field: "protocol"
+      display_name: "协议"
+      condition: "dst_device_type != 'unknown'"
+  
+  # 任务32：操作名称-语义检查
+  - task_id: "operate_name_semantic"
+    task_name: "操作名称语义检查"
+    enabled: true
+    sql_template: "operation_log_semantic_check"
+    params:
+      field: "operate_name"
+      display_name: "操作名称"
+  
+  # 任务33：操作命令-非空检查
+  - task_id: "operate_command_null"
+    task_name: "操作命令非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "operate_command"
+      display_name: "操作命令"
+  
+  # 任务34：操作命令-语义检查
+  - task_id: "operate_command_semantic"
+    task_name: "操作命令语义检查"
+    enabled: true
+    sql_template: "operation_log_semantic_check"
+    params:
+      field: "operate_command"
+      display_name: "操作命令"
+  
+  # 任务35：操作内容-非空检查
+  - task_id: "operate_content_null"
+    task_name: "操作内容非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "operate_content"
+      display_name: "操作内容"
+  
+  # 任务36：操作内容-语义检查
+  - task_id: "operate_content_semantic"
+    task_name: "操作内容语义检查"
+    enabled: true
+    sql_template: "operation_log_semantic_check"
+    params:
+      field: "operate_content"
+      display_name: "操作内容"
+  
+  # 任务37：操作类型-非空检查
+  - task_id: "operate_type_null"
+    task_name: "操作类型非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "operate_type"
+      display_name: "操作类型"
+  
+  # 任务38：执行结果-枚举值检查
+  - task_id: "exec_result_enum"
+    task_name: "执行结果枚举值检查"
+    enabled: true
+    sql_template: "operation_log_enum_check"
+    params:
+      field: "exec_result"
+      display_name: "执行结果"
+  
+  # 任务39：执行结果-非空检查
+  - task_id: "exec_result_null"
+    task_name: "执行结果非空检查"
+    enabled: true
+    sql_template: "operation_log_null_check"
+    params:
+      field: "exec_result"
+      display_name: "执行结果"
+
+  # 任务40：执行结果-异常占比检查
+  - task_id: "exec_result_anomaly"
+    task_name: "执行结果异常占比检查"
+    enabled: true
+    sql_template: "operation_log_exec_result_anomaly_check"
+    params:
+      field: "exec_result"
+      display_name: "执行结果"
+  
+  # 任务41：数据库服务-正确性检查
+  - task_id: "database_service_correctness"
+    task_name: "数据库服务正确性检查"
+    enabled: true
+    sql_template: "operation_log_correctness_check"
+    params:
+      field: "database_service"
+      display_name: "数据库服务"
+  
+  # 任务42：来源账号状态-账号加锁统计
+  - task_id: "from_account_status_locked"
+    task_name: "来源账号加锁统计"
+    enabled: true
+    sql_template: "operation_log_locked_accounts"
+    params:
+      field: "from_account_status"
+      display_name: "来源账号状态"
+  
+  # 任务43：黄金授权结果-统计分析
+  - task_id: "gold_grant_result_statistical"
+    task_name: "黄金授权结果统计分析"
+    enabled: true
+    sql_template: "operation_log_statistical_analysis"
+    params:
+      field: "gold_grant_result"
+      display_name: "黄金授权结果"

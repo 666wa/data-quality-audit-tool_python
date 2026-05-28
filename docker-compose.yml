@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  audit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: data-quality-audit:latest
+    container_name: data-quality-audit
+    volumes:
+      # 配置目录映射（必需）
+      - ./config:/app/config
+      # SQL模板目录映射（必需）
+      - ./sql_templates:/app/sql_templates
+      # 报告输出目录映射（可选）
+      - ./output:/app/output
+      # 日志目录映射（可选）
+      - ./logs:/app/logs
+      # 生成的大SQL文件目录映射（可选）
+      - ./big_sql:/app/big_sql
+    # 默认不执行命令，由用户手动传入
+    command: ["--help"]
+    # 如果需要连接内网数据库，可能需要指定网络模式
+    # network_mode: host

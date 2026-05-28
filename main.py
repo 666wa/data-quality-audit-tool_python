@@ -22,6 +22,8 @@ from logger import AuditLogger
 from db_executor import DatabaseExecutor
 from audit_executor import AuditExecutor
 from report_generator import ReportGenerator
+from config_validator import ConfigValidator
+from init_wizard import InitWizard
 
 
 def generate_big_sql(config_manager, logger, table_name):
@@ -333,6 +335,8 @@ def main():
   python main.py --task gold_log                   # 执行金库日志稽核任务
   python main.py --gen-sql --task operation_log    # 生成大SQL文件
   python main.py --all-tasks                       # 执行所有稽核任务
+  python main.py --validate                        # 验证所有配置
+  python main.py --init-task my_new_task            # 交互式生成新任务配置
         """
     )
     parser.add_argument(
@@ -364,6 +368,17 @@ def main():
         dest='all_tasks',
         help=argparse.SUPPRESS  # 隐藏此选项，但保持兼容性
     )
+    parser.add_argument(
+        '--validate',
+        action='store_true',
+        help='验证所有配置文件的完整性和一致性'
+    )
+    parser.add_argument(
+        '--init-task',
+        type=str,
+        metavar='TASK_NAME',
+        help='交互式生成新的稽核任务配置和SQL模板'
+    )
     
     args = parser.parse_args()
     
@@ -375,6 +390,23 @@ def main():
         config_manager = ConfigManager('config/config.yaml', logger)
         
         # 根据参数选择执行模式
+        
+        # 1. 配置生成向导模式（最高优先级）
+        if args.init_task:
+            wizard = InitWizard(logger)
+            success = wizard.run(args.init_task)
+            return 0 if success else 1
+        
+        # 2. 配置验证模式
+        if args.validate:
+            if not config_manager.load_config():
+                logger.error("配置加载失败")
+                return 1
+            validator = ConfigValidator(config_manager, logger)
+            success = validator.validate_all()
+            return 0 if success else 1
+        
+        # 2. 生成大SQL文件模式
         if args.gen_sql:
             # 生成大SQL文件模式
             if not args.task:

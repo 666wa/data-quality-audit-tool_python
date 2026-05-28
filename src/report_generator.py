@@ -5,9 +5,119 @@
 按设备类型分组展示
 """
 
-import json
 from datetime import datetime
 from pathlib import Path
+
+
+class ASCIITable:
+    """ASCII 表格生成器
+    
+    生成标准的 ASCII 边框表格，支持中文字符宽度计算。
+    """
+    
+    def __init__(self, padding=1):
+        """
+        初始化 ASCII 表格
+        
+        Args:
+            padding: 单元格内容与边框的间距（默认1）
+        """
+        self.padding = padding
+        self.headers = []
+        self.rows = []
+    
+    def set_headers(self, headers):
+        """设置表头"""
+        self.headers = [str(h) for h in headers]
+    
+    def add_row(self, row):
+        """添加数据行"""
+        self.rows.append([str(cell) for cell in row])
+    
+    @staticmethod
+    def _display_width(text):
+        """计算文本显示宽度（中文算2，英文算1）"""
+        width = 0
+        for char in str(text):
+            if ord(char) > 127:
+                width += 2
+            else:
+                width += 1
+        return width
+    
+    def _calc_column_widths(self):
+        """计算每列最优宽度"""
+        if not self.headers and not self.rows:
+            return []
+        
+        num_cols = len(self.headers) if self.headers else len(self.rows[0])
+        widths = [0] * num_cols
+        
+        # 考虑表头
+        for i, header in enumerate(self.headers):
+            widths[i] = max(widths[i], self._display_width(header))
+        
+        # 考虑数据行
+        for row in self.rows:
+            for i, cell in enumerate(row):
+                if i < num_cols:
+                    widths[i] = max(widths[i], self._display_width(cell))
+        
+        return widths
+    
+    def _pad_cell(self, text, width, align='l'):
+        """填充单元格到指定宽度"""
+        text_width = self._display_width(text)
+        padding = width - text_width
+        
+        if padding <= 0:
+            return text
+        
+        if align == 'r':
+            return ' ' * padding + text
+        else:
+            return text + ' ' * padding
+    
+    def _build_separator(self, widths):
+        """构建分隔行"""
+        parts = []
+        for w in widths:
+            parts.append('-' * (w + self.padding * 2))
+        return '+' + '+'.join(parts) + '+'
+    
+    def _build_row(self, cells, widths, align='l'):
+        """构建数据行"""
+        parts = []
+        for i, cell in enumerate(cells):
+            if i < len(widths):
+                padded = self._pad_cell(cell, widths[i], align)
+                parts.append(' ' * self.padding + padded + ' ' * self.padding)
+        return '|' + '|'.join(parts) + '|'
+    
+    def render(self):
+        """渲染完整表格"""
+        if not self.headers and not self.rows:
+            return ""
+        
+        widths = self._calc_column_widths()
+        lines = []
+        
+        # 顶部分隔线
+        lines.append(self._build_separator(widths))
+        
+        # 表头
+        if self.headers:
+            lines.append(self._build_row(self.headers, widths, 'l'))
+            lines.append(self._build_separator(widths))
+        
+        # 数据行
+        for row in self.rows:
+            lines.append(self._build_row(row, widths, 'l'))
+        
+        # 底部分隔线
+        lines.append(self._build_separator(widths))
+        
+        return '\n'.join(lines)
 
 
 class ReportGenerator:
@@ -152,6 +262,36 @@ class ReportGenerator:
         
         return stats
     
+    def _render_stats_table(self, stats_data):
+        """
+        使用 ASCIITable 渲染统计数据
+        
+        Args:
+            stats_data: 原始统计数据字符串（TabSeparatedWithNames格式）
+            
+        Returns:
+            str: 格式化后的 ASCII 表格字符串
+        """
+        if not stats_data:
+            return ""
+        
+        stats_lines = stats_data.strip().split('\n')
+        if len(stats_lines) == 0:
+            return ""
+        
+        table = ASCIITable(padding=1)
+        
+        # 表头
+        headers = stats_lines[0].split('\t')
+        table.set_headers(headers)
+        
+        # 数据行
+        for data_line in stats_lines[1:]:
+            cells = data_line.split('\t')
+            table.add_row(cells)
+        
+        return table.render()
+    
     def format_audit_result(self, result):
         """
         格式化单个稽核结果
@@ -177,25 +317,10 @@ class ReportGenerator:
                 lines.append("【统计结果】")
                 stats_data = result['stats'].get('data', '')
                 if stats_data:
-                    # 解析并格式化统计表格
-                    stats_lines = stats_data.strip().split('\n')
-                    if len(stats_lines) > 0:
-                        # 解析表头
-                        headers = stats_lines[0].split('\t')
-                        
-                        # 格式化表头
-                        for header_line in self.format_table_line(headers):
-                            lines.append(f"  {header_line}")
-                        
-                        # 分隔线
-                        separator = '  '.join(['-' * self.column_width] * len(headers))
-                        lines.append(f"  {separator}")
-                        
-                        # 格式化数据行
-                        for data_line in stats_lines[1:]:
-                            cells = data_line.split('\t')
-                            for formatted_line in self.format_table_line(cells):
-                                lines.append(f"  {formatted_line}")
+                    table_str = self._render_stats_table(stats_data)
+                    if table_str:
+                        for line in table_str.split('\n'):
+                            lines.append(f"  {line}")
                 lines.append("")
             
             return '\n'.join(lines)
@@ -211,27 +336,12 @@ class ReportGenerator:
             lines.append("【统计结果 - 按设备类型分组】")
             stats_data = result['stats'].get('data', '')
             if stats_data:
-                # 解析并格式化统计表格
-                stats_lines = stats_data.strip().split('\n')
-                if len(stats_lines) > 0:
-                    # 解析表头
-                    headers = stats_lines[0].split('\t')
-                    
-                    # 格式化表头
-                    for header_line in self.format_table_line(headers):
-                        lines.append(f"  {header_line}")
-                    
-                    # 分隔线
-                    separator = '  '.join(['-' * self.column_width] * len(headers))
-                    lines.append(f"  {separator}")
-                    
-                    # 格式化数据行
-                    for data_line in stats_lines[1:]:
-                        cells = data_line.split('\t')
-                        for formatted_line in self.format_table_line(cells):
-                            lines.append(f"  {formatted_line}")
-                    
+                table_str = self._render_stats_table(stats_data)
+                if table_str:
+                    for line in table_str.split('\n'):
+                        lines.append(f"  {line}")
                     # 计算汇总
+                    stats_lines = stats_data.strip().split('\n')
                     if len(stats_lines) > 1:
                         lines.append("")
                         lines.append(f"  共 {len(stats_lines) - 1} 个设备类型")

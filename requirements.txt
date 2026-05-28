@@ -5,4 +5,4 @@
 requests>=2.20.0,<3.0.0
 
 # YAML解析库
-PyYAML>=5.1.0,<6.0.0
+PyYAML>=6.0.0

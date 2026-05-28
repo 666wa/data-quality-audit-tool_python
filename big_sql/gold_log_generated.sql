@@ -1,9 +1,9 @@
 -- 数据质量稽核 - 批量SQL查询
 -- 表名: gold_log
--- 生成时间: 2026-01-21 18:49:00
--- 时间范围: 2026-01-12 00:00:00 ~ 2026-01-19 00:00:00
+-- 生成时间: 2026-05-28 02:17:09
+-- 时间范围: 2026-01-12 00:00:00 ~ 2026-01-13 00:00:00
 
--- gold_grant_result - uniqueness_check - 统计查询
+-- 任务: 金库授权结果唯一性检查 (gold_grant_result_uniqueness) - 统计查询
 -- 唯一性核查 - 统计版本
 -- 检查gold_grant_result的唯一性（组合键）
 WITH 
@@ -11,7 +11,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表，构建组合键
 all_logs AS ( 
@@ -45,7 +45,7 @@ SELECT
     SUM(duplicate_count) AS total_duplicate_records
 FROM duplicate_stats;
 
--- gold_grant_result - uniqueness_check - 样例查询
+-- 任务: 金库授权结果唯一性检查 (gold_grant_result_uniqueness) - 样例查询
 -- 唯一性核查 - 样例版本
 -- 返回重复记录的样例
 WITH 
@@ -53,7 +53,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表，构建组合键
 all_logs AS ( 
@@ -97,7 +97,7 @@ FROM duplicate_keys
 ORDER BY duplicate_count DESC
 LIMIT 10;
 
--- gold_grant_result - null_check - 统计查询
+-- 任务: 金库授权结果非空检查 (gold_grant_result_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -105,7 +105,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -143,7 +143,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- gold_grant_result - null_check - 样例查询
+-- 任务: 金库授权结果非空检查 (gold_grant_result_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -151,7 +151,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -177,7 +177,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- resource_pool - null_check - 统计查询
+-- 任务: 资源池非空检查 (resource_pool_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -185,7 +185,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -223,7 +223,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- resource_pool - null_check - 样例查询
+-- 任务: 资源池非空检查 (resource_pool_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -231,7 +231,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -257,7 +257,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- account_id - null_check - 统计查询
+-- 任务: 账号ID非空检查 (account_id_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -265,7 +265,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -303,7 +303,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- account_id - null_check - 样例查询
+-- 任务: 账号ID非空检查 (account_id_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -311,7 +311,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -337,7 +337,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- natural_name - null_check - 统计查询
+-- 任务: 自然人姓名非空检查 (natural_name_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -345,7 +345,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -383,7 +383,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- natural_name - null_check - 样例查询
+-- 任务: 自然人姓名非空检查 (natural_name_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -391,7 +391,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -417,7 +417,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- account_role - enum_check - 统计查询
+-- 任务: 账号角色枚举值检查 (account_role_enum) - 统计查询
 -- 枚举值核查 - 统计版本
 -- 统计枚举值分布
 WITH 
@@ -425,7 +425,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -474,7 +474,7 @@ FROM value_stats vs
 CROSS JOIN total_stats ts
 ORDER BY vs.value_count DESC;
 
--- account_role - enum_check - 样例查询
+-- 任务: 账号角色枚举值检查 (account_role_enum) - 样例查询
 -- 枚举值核查 - 样例版本
 -- 返回最多10个不同的枚举值样例
 WITH 
@@ -482,7 +482,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -533,7 +533,7 @@ SELECT
 FROM distinct_values
 ORDER BY value_count DESC, enum_value;
 
--- account_role - null_check - 统计查询
+-- 任务: 账号角色非空检查 (account_role_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -541,7 +541,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -579,7 +579,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- account_role - null_check - 样例查询
+-- 任务: 账号角色非空检查 (account_role_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -587,7 +587,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -613,7 +613,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- from_account - null_check - 统计查询
+-- 任务: 来源账号非空检查 (from_account_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -621,7 +621,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -659,7 +659,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- from_account - null_check - 样例查询
+-- 任务: 来源账号非空检查 (from_account_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -667,7 +667,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -693,7 +693,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- req_reason - null_check - 统计查询
+-- 任务: 申请原因非空检查 (req_reason_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -701,7 +701,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -739,7 +739,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- req_reason - null_check - 样例查询
+-- 任务: 申请原因非空检查 (req_reason_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -747,7 +747,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -773,7 +773,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- gold_grant_type - enum_check - 统计查询
+-- 任务: 金库授权类型枚举值检查 (gold_grant_type_enum) - 统计查询
 -- 枚举值核查 - 统计版本
 -- 统计枚举值分布
 WITH 
@@ -781,7 +781,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -830,7 +830,7 @@ FROM value_stats vs
 CROSS JOIN total_stats ts
 ORDER BY vs.value_count DESC;
 
--- gold_grant_type - enum_check - 样例查询
+-- 任务: 金库授权类型枚举值检查 (gold_grant_type_enum) - 样例查询
 -- 枚举值核查 - 样例版本
 -- 返回最多10个不同的枚举值样例
 WITH 
@@ -838,7 +838,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -889,7 +889,7 @@ SELECT
 FROM distinct_values
 ORDER BY value_count DESC, enum_value;
 
--- start_time - time_conditional_null_check - 统计查询
+-- 任务: 开始时间条件非空检查 (start_time_conditional_null) - 统计查询
 -- 时间字段条件非空核查 - 统计版本
 -- 在特定条件下检查时间字段是否为空
 -- 注意：某些时间字段可能是字符串类型，需要特殊处理
@@ -898,7 +898,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查满足条件的记录）
 all_logs AS ( 
@@ -907,7 +907,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
-      AND {condition}
+      AND gold_grant_type = '按时间段'
     
     UNION ALL 
     
@@ -915,7 +915,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
-      AND {condition}
+      AND gold_grant_type = '按时间段'
 ),
 -- 3. 统计空值（转换为字符串后检查）
 stats AS (
@@ -940,7 +940,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- start_time - time_conditional_null_check - 样例查询
+-- 任务: 开始时间条件非空检查 (start_time_conditional_null) - 样例查询
 -- 时间字段条件非空核查 - 样例版本
 -- 返回满足条件但时间字段为空的样例
 WITH 
@@ -948,7 +948,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -957,7 +957,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
-      AND {condition}
+      AND gold_grant_type = '按时间段'
       AND (start_time IS NULL 
            OR start_time = toDateTime64('1970-01-01 00:00:00', 3)
            OR start_time = toDateTime64('1970-01-01 08:00:00', 3)
@@ -969,7 +969,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
-      AND {condition}
+      AND gold_grant_type = '按时间段'
       AND (start_time IS NULL 
            OR start_time = toDateTime64('1970-01-01 00:00:00', 3)
            OR start_time = toDateTime64('1970-01-01 08:00:00', 3)
@@ -982,7 +982,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- end_time - time_conditional_null_check - 统计查询
+-- 任务: 结束时间条件非空检查 (end_time_conditional_null) - 统计查询
 -- 时间字段条件非空核查 - 统计版本
 -- 在特定条件下检查时间字段是否为空
 -- 注意：某些时间字段可能是字符串类型，需要特殊处理
@@ -991,7 +991,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查满足条件的记录）
 all_logs AS ( 
@@ -1000,7 +1000,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
-      AND {condition}
+      AND gold_grant_type = '按时间段'
     
     UNION ALL 
     
@@ -1008,7 +1008,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
-      AND {condition}
+      AND gold_grant_type = '按时间段'
 ),
 -- 3. 统计空值（转换为字符串后检查）
 stats AS (
@@ -1033,7 +1033,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- end_time - time_conditional_null_check - 样例查询
+-- 任务: 结束时间条件非空检查 (end_time_conditional_null) - 样例查询
 -- 时间字段条件非空核查 - 样例版本
 -- 返回满足条件但时间字段为空的样例
 WITH 
@@ -1041,7 +1041,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1050,7 +1050,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
-      AND {condition}
+      AND gold_grant_type = '按时间段'
       AND (end_time IS NULL 
            OR end_time = toDateTime64('1970-01-01 00:00:00', 3)
            OR end_time = toDateTime64('1970-01-01 08:00:00', 3)
@@ -1062,7 +1062,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
-      AND {condition}
+      AND gold_grant_type = '按时间段'
       AND (end_time IS NULL 
            OR end_time = toDateTime64('1970-01-01 00:00:00', 3)
            OR end_time = toDateTime64('1970-01-01 08:00:00', 3)
@@ -1075,7 +1075,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- reservation_time - time_null_check - 统计查询
+-- 任务: 预约时间非空检查 (reservation_time_null) - 统计查询
 -- 时间字段非空核查 - 统计版本
 -- 专门用于DateTime类型字段的空值检查
 -- 注意：某些时间字段可能是字符串类型，需要特殊处理
@@ -1084,7 +1084,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1123,7 +1123,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- reservation_time - time_null_check - 样例查询
+-- 任务: 预约时间非空检查 (reservation_time_null) - 样例查询
 -- 时间字段非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -1131,7 +1131,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1161,7 +1161,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- approved_user_id - conditional_null_check - 统计查询
+-- 任务: 审批人ID条件非空检查 (approved_user_id_conditional_null) - 统计查询
 -- 条件非空核查 - 统计版本
 -- 在特定条件下检查字段是否为空
 WITH 
@@ -1169,7 +1169,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查满足条件的记录）
 all_logs AS ( 
@@ -1178,7 +1178,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
-      AND {condition}
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('审批不通过', '未触发金库')
     
     UNION ALL 
     
@@ -1186,7 +1186,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
-      AND {condition}
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('审批不通过', '未触发金库')
 ),
 -- 3. 统计空值
 stats AS (
@@ -1209,7 +1209,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- approved_user_id - conditional_null_check - 样例查询
+-- 任务: 审批人ID条件非空检查 (approved_user_id_conditional_null) - 样例查询
 -- 条件非空核查 - 样例版本
 -- 返回满足条件但字段为空的样例
 WITH 
@@ -1217,7 +1217,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1226,7 +1226,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
-      AND {condition}
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('审批不通过', '未触发金库')
       AND (approved_user_id IS NULL OR approved_user_id = '' OR approved_user_id IN ('null', 'NULL'))
     
     UNION ALL 
@@ -1235,7 +1235,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
-      AND {condition}
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('审批不通过', '未触发金库')
       AND (approved_user_id IS NULL OR approved_user_id = '' OR approved_user_id IN ('null', 'NULL'))
 )
 -- 3. 返回样例（最多10条）
@@ -1245,23 +1245,24 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- approved_user_name - null_check - 统计查询
--- 非空核查 - 统计版本
--- 统计空值记录数量和比例
+-- 任务: 审批人姓名条件非空检查 (approved_user_name_conditional_null) - 统计查询
+-- 条件非空核查 - 统计版本
+-- 在特定条件下检查字段是否为空
 WITH 
 -- 1. 定义时间范围
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
--- 2. 联合查询两张表（只查必要字段）
+-- 2. 联合查询两张表（只查满足条件的记录）
 all_logs AS ( 
     SELECT approved_user_name
     FROM argus.bg_4a_gold_log_standard
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('未触发金库')
     
     UNION ALL 
     
@@ -1269,6 +1270,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('未触发金库')
 ),
 -- 3. 统计空值
 stats AS (
@@ -1291,15 +1293,15 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- approved_user_name - null_check - 样例查询
--- 非空核查 - 样例版本
--- 返回空值样例（最多10条）
+-- 任务: 审批人姓名条件非空检查 (approved_user_name_conditional_null) - 样例查询
+-- 条件非空核查 - 样例版本
+-- 返回满足条件但字段为空的样例
 WITH 
 -- 1. 定义时间范围
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1308,6 +1310,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('未触发金库')
       AND (approved_user_name IS NULL OR approved_user_name = '' OR approved_user_name IN ('null', 'NULL'))
     
     UNION ALL 
@@ -1316,6 +1319,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
+      AND gold_grant_type != '按时间段' AND gold_exec_result NOT IN ('未触发金库')
       AND (approved_user_name IS NULL OR approved_user_name = '' OR approved_user_name IN ('null', 'NULL'))
 )
 -- 3. 返回样例（最多10条）
@@ -1325,7 +1329,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- approved_time - time_null_check - 统计查询
+-- 任务: 审批时间非空检查 (approved_time_null) - 统计查询
 -- 时间字段非空核查 - 统计版本
 -- 专门用于DateTime类型字段的空值检查
 -- 注意：某些时间字段可能是字符串类型，需要特殊处理
@@ -1334,7 +1338,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1373,7 +1377,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- approved_time - time_null_check - 样例查询
+-- 任务: 审批时间非空检查 (approved_time_null) - 样例查询
 -- 时间字段非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -1381,7 +1385,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1411,7 +1415,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- gold_exec_result - enum_check - 统计查询
+-- 任务: 金库执行结果枚举值检查 (gold_exec_result_enum) - 统计查询
 -- 枚举值核查 - 统计版本
 -- 统计枚举值分布
 WITH 
@@ -1419,7 +1423,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1468,7 +1472,7 @@ FROM value_stats vs
 CROSS JOIN total_stats ts
 ORDER BY vs.value_count DESC;
 
--- gold_exec_result - enum_check - 样例查询
+-- 任务: 金库执行结果枚举值检查 (gold_exec_result_enum) - 样例查询
 -- 枚举值核查 - 样例版本
 -- 返回最多10个不同的枚举值样例
 WITH 
@@ -1476,7 +1480,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1527,7 +1531,7 @@ SELECT
 FROM distinct_values
 ORDER BY value_count DESC, enum_value;
 
--- gold_exec_result - null_check - 统计查询
+-- 任务: 金库执行结果非空检查 (gold_exec_result_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -1535,7 +1539,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1573,7 +1577,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- gold_exec_result - null_check - 样例查询
+-- 任务: 金库执行结果非空检查 (gold_exec_result_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -1581,7 +1585,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1607,7 +1611,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- auth_mode - enum_check - 统计查询
+-- 任务: 认证模式枚举值检查 (auth_mode_enum) - 统计查询
 -- 枚举值核查 - 统计版本
 -- 统计枚举值分布
 WITH 
@@ -1615,7 +1619,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1664,7 +1668,7 @@ FROM value_stats vs
 CROSS JOIN total_stats ts
 ORDER BY vs.value_count DESC;
 
--- auth_mode - enum_check - 样例查询
+-- 任务: 认证模式枚举值检查 (auth_mode_enum) - 样例查询
 -- 枚举值核查 - 样例版本
 -- 返回最多10个不同的枚举值样例
 WITH 
@@ -1672,7 +1676,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1723,7 +1727,7 @@ SELECT
 FROM distinct_values
 ORDER BY value_count DESC, enum_value;
 
--- auth_mode - null_check - 统计查询
+-- 任务: 认证模式非空检查 (auth_mode_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -1731,7 +1735,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1769,7 +1773,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- auth_mode - null_check - 样例查询
+-- 任务: 认证模式非空检查 (auth_mode_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -1777,7 +1781,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1803,7 +1807,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- status - enum_check - 统计查询
+-- 任务: 状态枚举值检查 (status_enum) - 统计查询
 -- 枚举值核查 - 统计版本
 -- 统计枚举值分布
 WITH 
@@ -1811,7 +1815,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1860,7 +1864,7 @@ FROM value_stats vs
 CROSS JOIN total_stats ts
 ORDER BY vs.value_count DESC;
 
--- status - enum_check - 样例查询
+-- 任务: 状态枚举值检查 (status_enum) - 样例查询
 -- 枚举值核查 - 样例版本
 -- 返回最多10个不同的枚举值样例
 WITH 
@@ -1868,7 +1872,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1919,23 +1923,24 @@ SELECT
 FROM distinct_values
 ORDER BY value_count DESC, enum_value;
 
--- gold_scene_name - null_check - 统计查询
--- 非空核查 - 统计版本
--- 统计空值记录数量和比例
+-- 任务: 金库场景名称条件非空检查 (gold_scene_name_conditional_null) - 统计查询
+-- 条件非空核查 - 统计版本
+-- 在特定条件下检查字段是否为空
 WITH 
 -- 1. 定义时间范围
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
--- 2. 联合查询两张表（只查必要字段）
+-- 2. 联合查询两张表（只查满足条件的记录）
 all_logs AS ( 
     SELECT gold_scene_name
     FROM argus.bg_4a_gold_log_standard
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
+      AND gold_exec_result != '未触发金库'
     
     UNION ALL 
     
@@ -1943,6 +1948,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
+      AND gold_exec_result != '未触发金库'
 ),
 -- 3. 统计空值
 stats AS (
@@ -1965,15 +1971,15 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- gold_scene_name - null_check - 样例查询
--- 非空核查 - 样例版本
--- 返回空值样例（最多10条）
+-- 任务: 金库场景名称条件非空检查 (gold_scene_name_conditional_null) - 样例查询
+-- 条件非空核查 - 样例版本
+-- 返回满足条件但字段为空的样例
 WITH 
 -- 1. 定义时间范围
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -1982,6 +1988,7 @@ all_logs AS (
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
       AND standby1 IS NULL
+      AND gold_exec_result != '未触发金库'
       AND (gold_scene_name IS NULL OR gold_scene_name = '' OR gold_scene_name IN ('null', 'NULL'))
     
     UNION ALL 
@@ -1990,6 +1997,7 @@ all_logs AS (
     FROM argus.bg_4a_gold_log_error
     WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
       AND generic_into_time < (SELECT end_ts FROM time_range)
+      AND gold_exec_result != '未触发金库'
       AND (gold_scene_name IS NULL OR gold_scene_name = '' OR gold_scene_name IN ('null', 'NULL'))
 )
 -- 3. 返回样例（最多10条）
@@ -1999,7 +2007,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- trigger_type - null_check - 统计查询
+-- 任务: 触发类型非空检查 (trigger_type_null) - 统计查询
 -- 非空核查 - 统计版本
 -- 统计空值记录数量和比例
 WITH 
@@ -2007,7 +2015,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2045,7 +2053,7 @@ SELECT
 FROM stats
 WHERE total_count > 0;
 
--- trigger_type - null_check - 样例查询
+-- 任务: 触发类型非空检查 (trigger_type_null) - 样例查询
 -- 非空核查 - 样例版本
 -- 返回空值样例（最多10条）
 WITH 
@@ -2053,7 +2061,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -2079,7 +2087,7 @@ SELECT
 FROM all_logs
 LIMIT 10;
 
--- trigger_type - enum_check - 统计查询
+-- 任务: 触发类型枚举值检查 (trigger_type_enum) - 统计查询
 -- 枚举值核查 - 统计版本
 -- 统计枚举值分布
 WITH 
@@ -2087,7 +2095,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -2136,7 +2144,7 @@ FROM value_stats vs
 CROSS JOIN total_stats ts
 ORDER BY vs.value_count DESC;
 
--- trigger_type - enum_check - 样例查询
+-- 任务: 触发类型枚举值检查 (trigger_type_enum) - 样例查询
 -- 枚举值核查 - 样例版本
 -- 返回最多10个不同的枚举值样例
 WITH 
@@ -2144,7 +2152,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表
 all_logs AS ( 
@@ -2195,7 +2203,7 @@ SELECT
 FROM distinct_values
 ORDER BY value_count DESC, enum_value;
 
--- gold_scene_info - semantic_check - 统计查询
+-- 任务: 金库场景信息语义检查 (gold_scene_info_semantic) - 统计查询
 -- 语义抽查 - 统计查询
 -- 检查字段是否包含乱码、特殊字符等异常值
 WITH 
@@ -2203,7 +2211,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -2263,7 +2271,7 @@ SELECT
 FROM stats
 WHERE total_records > 0;
 
--- gold_scene_info - semantic_check - 样例查询
+-- 任务: 金库场景信息语义检查 (gold_scene_info_semantic) - 样例查询
 -- 语义抽查 - 样例查询
 -- 优先返回包含异常字符的样例，如果没有则随机抽取10个不同的值进行人工检查
 WITH 
@@ -2271,7 +2279,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -2344,7 +2352,7 @@ SELECT
 FROM distinct_samples
 ORDER BY is_abnormal DESC, sample_value;
 
--- 特殊任务: table_count_statistics - table_count
+-- 任务: 表数据量统计 (table_count_statistics) - 统计查询
 -- 表数据量统计
 -- 统计标准表和错误表的数据量
 WITH 
@@ -2352,7 +2360,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 统计标准表
 standard_count AS (
@@ -2383,4 +2391,34 @@ SELECT
     table_type,
     record_count
 FROM error_count
+ORDER BY table_type;
+
+-- 任务: 表数据量统计 (table_count_statistics) - 样例查询
+-- 金库日志表数据量统计 - 样例查询
+-- 对于统计类任务，样例查询返回与统计查询相同的结果
+WITH 
+-- 定义时间范围
+time_range AS (
+    SELECT 
+        toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
+)
+-- 统计各表数据量
+SELECT 
+    'standard' AS table_type,
+    COUNT(*) AS record_count
+FROM argus.bg_4a_gold_log_standard
+WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
+  AND generic_into_time < (SELECT end_ts FROM time_range)
+  AND standby1 IS NULL
+
+UNION ALL
+
+SELECT 
+    'error' AS table_type,
+    COUNT(*) AS record_count
+FROM argus.bg_4a_gold_log_error
+WHERE generic_into_time >= (SELECT start_ts FROM time_range) 
+  AND generic_into_time < (SELECT end_ts FROM time_range)
+
 ORDER BY table_type;

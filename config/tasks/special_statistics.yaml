@@ -2,28 +2,36 @@
 # 这些任务不针对单个字段，而是针对特定业务场景
 
 # 稽核任务名称（第一级配置）
-task_name: "特殊统计稽核"
+task_name: 特殊统计稽核
 
 # 表信息配置
 table_info:
-  name: "special_statistics"
-  display_name: "特殊统计任务"
-  description: "跨表统计和特殊业务场景稽核"
-  
+  name: special_statistics
+  display_name: 特殊统计任务
+  description: 跨表统计和特殊业务场景稽核
+
+  # 表名配置（用于兼容性，特殊统计任务不直接对应标准表）
+  standard_table: argus.bg_4a_operation_log_standard
+  error_table: argus.bg_4a_operation_log_error
+
+  # 字段配置
+  time_field: generic_into_time
+  primary_key: log_id
+
   # SQL模板目录
-  template_dir: "special"
+  template_dir: special
 
 # 任务列表
 tasks:
   # 任务1：各日志表数据量统计
-  - task_id: "table_count_statistics"
-    task_name: "各日志表数据量统计"
+  - task_id: table_count_statistics
+    task_name: 各日志表数据量统计
     enabled: true
-    sql_template: "special_table_count"
+    sql_template: special_table_count
     params:
-      description: "统计各个日志表的数据量"
+      description: 统计各个日志表的数据量
       tables:
-        - "argus.bg_4a_operation_log_standard"
-        - "argus.bg_4a_operation_log_error"
-        - "argus.bg_4a_gold_log_standard"
-        - "argus.bg_4a_gold_log_error"
+        - argus.bg_4a_operation_log_standard
+        - argus.bg_4a_operation_log_error
+        - argus.bg_4a_gold_log_standard
+        - argus.bg_4a_gold_log_error

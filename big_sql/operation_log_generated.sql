@@ -1,7 +1,7 @@
 -- 数据质量稽核 - 批量SQL查询
 -- 表名: operation_log
--- 生成时间: 2026-01-21 19:45:27
--- 时间范围: 2026-01-12 00:00:00 ~ 2026-01-19 00:00:00
+-- 生成时间: 2026-05-28 01:40:23
+-- 时间范围: 2026-01-12 00:00:00 ~ 2026-01-13 00:00:00
 
 -- 任务: 日志ID唯一性检查 (log_id_uniqueness) - 统计查询
 -- 唯一性核查 - 统计版本（按设备类型分组，优化性能）
@@ -11,7 +11,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -63,7 +63,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -103,7 +103,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -146,7 +146,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -177,7 +177,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -220,7 +220,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -251,7 +251,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -309,7 +309,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -367,7 +367,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -410,7 +410,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -441,7 +441,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -499,7 +499,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -557,7 +557,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -600,7 +600,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -631,7 +631,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -674,7 +674,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -705,7 +705,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -748,7 +748,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -779,7 +779,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -822,7 +822,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -853,7 +853,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -911,7 +911,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -969,7 +969,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -1012,7 +1012,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -1043,7 +1043,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -1086,7 +1086,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -1117,7 +1117,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1175,7 +1175,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1233,7 +1233,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -1276,7 +1276,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -1307,7 +1307,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1365,7 +1365,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1423,7 +1423,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -1466,7 +1466,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -1497,7 +1497,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1540,7 +1540,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1571,7 +1571,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1614,7 +1614,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1645,7 +1645,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1703,7 +1703,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1761,7 +1761,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1804,7 +1804,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1835,7 +1835,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1893,7 +1893,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1951,7 +1951,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -1994,7 +1994,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2025,7 +2025,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -2068,7 +2068,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -2099,7 +2099,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -2173,7 +2173,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -2257,7 +2257,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2300,7 +2300,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2331,7 +2331,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2374,7 +2374,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2405,7 +2405,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -2448,7 +2448,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -2479,7 +2479,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2537,7 +2537,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2595,7 +2595,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -2638,7 +2638,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -2669,7 +2669,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2712,7 +2712,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -2743,7 +2743,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -2817,7 +2817,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -2901,7 +2901,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -2944,7 +2944,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -2975,7 +2975,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3049,7 +3049,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3133,7 +3133,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -3176,7 +3176,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -3207,7 +3207,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3281,7 +3281,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3365,7 +3365,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -3408,7 +3408,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -3439,7 +3439,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -3497,7 +3497,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段）
 all_logs AS ( 
@@ -3555,7 +3555,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查必要字段，不查generic_raw_log）
 all_logs AS ( 
@@ -3598,7 +3598,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 2. 联合查询两张表（只查log_id和dst_device_type，不查generic_raw_log）
 all_logs AS ( 
@@ -3629,7 +3629,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3668,7 +3668,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3710,7 +3710,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3758,7 +3758,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3797,7 +3797,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3832,7 +3832,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3872,7 +3872,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
@@ -3929,7 +3929,7 @@ WITH
 time_range AS (
     SELECT 
         toDateTime64('2026-01-12 00:00:00', 3) AS start_ts,
-        toDateTime64('2026-01-19 00:00:00', 3) AS end_ts
+        toDateTime64('2026-01-13 00:00:00', 3) AS end_ts
 ),
 -- 合并两个表的数据
 all_logs AS (
